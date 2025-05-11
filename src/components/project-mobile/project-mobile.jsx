@@ -3,21 +3,17 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useMedia } from "react-use";
 import { useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-const ArchiveHeroProject = ({ project, index }) => {
+const ProjectMobile = ({ project, index }) => {
   const imageRef = useRef(null);
   const router = useRouter();
-  const pathname = usePathname();
   const { handleMouseEnter, handleMouseLeave, handleClick } = useCursorStore();
   const [hoverVideo, setHoverVideo] = useState(null);
   const [onClicked, setOnClicked] = useState(false);
   const isTablet = useMedia("(max-width: 992px)");
 
   const calcTop = 16 + index * 16;
-  const calcTop2 = 32 + index * 16;
-  const customPadding = index === 0 ? "150px 0 250px  0" : "5px";
-  const customMargin = index === 0 ? 0 : "250px";
 
   const zoomAnimation = {
     initial: { scale: 1 },
@@ -67,37 +63,30 @@ const ArchiveHeroProject = ({ project, index }) => {
   return (
     <>
       <header
-        className="sticky w-full px-4 mix-blend-exclusion"
+        className="sticky w-full px-5 mix-blend-exclusion"
         style={{ top: calcTop }}
         onMouseEnter={() => setHoverVideo(true)}
         onMouseLeave={() => setHoverVideo(false)}
       >
-        <ul className="relative grid grid-cols-5 group max-lg:grid-cols-2">
-          <div className="flex items-center col-span-1 max-lg:gap-6">
-            <a className="relative normal-txt group-hover:opacity-50 transition-all">
+        <ul
+          className="grid grid-cols-2 group z-10"
+          onClick={() => clickedInProject()}
+        >
+          <div className="flex items-center col-span-1 gap-4">
+            <a className="normal-txt group-hover:opacity-50 transition-all">
               {project.index}
             </a>
-            <a className="normal-txt group-hover:opacity-50 transition-all hidden max-lg:block">
+            <a className="normal-txt mr-4 truncate group-hover:opacity-50 transition-all">
               {project.title}
             </a>
           </div>
 
-          <a className="normal-txt group-hover:opacity-50 transition-all max-lg:hidden">
-            {project.title}
-          </a>
-
           <a className="normal-txt group-hover:opacity-50 transition-all">
             {project.author}
           </a>
-          <a className="normal-txt group-hover:opacity-50 transition-all max-lg:hidden">
-            {project.category}
-          </a>
-          <a className="normal-txt group-hover:opacity-50 transition-all max-lg:hidden">
-            {project.camera}
-          </a>
         </ul>
 
-        <div className="fixed top-3 right-0 px-4">
+        <div className="fixed top-3 right-0 px-4 z-50">
           <a
             className="normal-txt uppercase"
             onClick={() => {
@@ -109,35 +98,13 @@ const ArchiveHeroProject = ({ project, index }) => {
         </div>
       </header>
 
-      <motion.div
-        className="sticky w-full px-16 mix-blend-unset pointer-events-none max-lg:hidden"
-        style={{ top: calcTop2 }}
-        variants={opacityAnimation}
-        initial="initial"
-        animate={hoverVideo ? "animate" : "initial"}
-      >
-        <video
-          src={project.video}
-          className="absolute -top-7 w-[300px] h-[200px]"
-          autoPlay
-          loop
-          muted
-        />
-      </motion.div>
-
-      <section
-        className="h-fit px-4 flex items-center justify-center max-lg:!py-4 max-lg:!mb-35"
-        style={{
-          padding: `${customPadding}`,
-          marginBottom: `${customMargin}`,
-        }}
-      >
+      <section className="w-full h-fit px-4 py-4 mb-35 flex items-center justify-center ">
         <motion.figure
           ref={imageRef}
           variants={zoomAnimation}
           initial="initial"
           animate={onClicked && "animate"}
-          className="size-auto px-4 cursor-none max-lg:px-3"
+          className="size-full cursor-none"
           onMouseEnter={
             !isTablet ? () => handleMouseEnter("projectHero") : undefined
           }
@@ -151,7 +118,7 @@ const ArchiveHeroProject = ({ project, index }) => {
             width={1200}
             height={1200}
             alt=""
-            className="max-h-[650px] h-full object-cover"
+            className="size-full object-cover"
           />
         </motion.figure>
 
@@ -168,4 +135,4 @@ const ArchiveHeroProject = ({ project, index }) => {
   );
 };
 
-export default ArchiveHeroProject;
+export default ProjectMobile;

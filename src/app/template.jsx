@@ -29,6 +29,7 @@ const Template = ({ children }) => {
         initial="initial"
         animate="animate"
         exit="exit"
+        className="block size-full"
         key={pathname}
       >
         {children}

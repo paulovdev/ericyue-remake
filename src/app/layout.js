@@ -1,5 +1,5 @@
 import "./globals.css";
-import Nav from "@/components/nav/nav";
+import Footer from "@/components/footer/footer";
 import { Cursor } from "@/utils/cursor";
 
 export const metadata = {
@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
       <body>
         <Cursor />
         {children}
-        <Nav />
+        <Footer />
       </body>
     </html>
   );

@@ -18,7 +18,6 @@ const HeroProject = ({ project, index }) => {
   const customPadding = index === 0 ? "150px 0 250px  0" : "5px";
   const customMargin = index === 0 ? 0 : "250px";
 
-
   const zoomAnimation = {
     initial: { scale: 1 },
     animate: {
@@ -72,8 +71,11 @@ const HeroProject = ({ project, index }) => {
         onMouseEnter={() => setHoverVideo(true)}
         onMouseLeave={() => setHoverVideo(false)}
       >
-        <ul className="relative grid grid-cols-5 group max-lg:grid-cols-2">
-          <div className="flex items-center col-span-1 max-lg:gap-6">
+        <ul
+          className="relative grid grid-cols-5 group max-lg:grid-cols-2"
+          onClick={() => clickedInProject()}
+        >
+          <div className="flex items-center col-span-1 max-lg:gap-4">
             <a className="relative normal-txt group-hover:opacity-50 transition-all">
               {project.index}
             </a>

@@ -36,8 +36,8 @@ body {
   font-style: inherit;
   vertical-align: baseline;
 
+  width: 100%;
   font-family: Helvetica, sans-serif;
-  width: 100dvw;
   background-color: var(--color-white);
 }
 

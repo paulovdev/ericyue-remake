@@ -29,6 +29,6 @@ export const useCursorStore = create((set) => ({
 }));
 
 export const usePlayingVideoStore = create((set) => ({
-  isPlaying: false,
+  isPlaying: true,
   setIsPlaying: (status) => set({ isPlaying: status }),
 }));

@@ -1,6 +1,5 @@
 "use client";
 
-import ArchiveHeroProject from "@/components/archive-hero-projects/archive-hero-projects";
 import Filters from "@/components/filters/filters";
 import ProjectGrid from "@/components/project-grid/project-grid";
 import ProjectList from "@/components/project-list/project-list";
@@ -9,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useMedia } from "react-use";
+import ProjectMobile from "@/components/project-mobile/project-mobile";
 
 const opacityAnimation = {
   initial: { opacity: 0 },
@@ -133,7 +133,7 @@ const Archive = () => {
   return (
     <>
       {!isTablet ? (
-        <main className={` ${layout === "grid" ? "px-5 py-2" : "px-2 py-2"}`}>
+        <main className={` ${layout === "grid" ? "px-5 py-6" : "px-2 py-6"}`}>
           <section
             className={`w-full ${
               layout === "grid"
@@ -162,7 +162,7 @@ const Archive = () => {
       ) : (
         <>
           {filteredProjects.map((project, i) => (
-            <ArchiveHeroProject key={i} project={project} index={i} />
+            <ProjectMobile key={i} project={project} index={i} />
           ))}
           <Nav
             activeFilter={activeFilter}
