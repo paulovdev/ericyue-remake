@@ -3,8 +3,7 @@
 import { useParams } from "next/navigation";
 import projectsData from "@/data/projectsData";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState, useCallback } from "react";
-import { useMedia } from "react-use";
+import { useEffect, useRef, useState } from "react";
 import { useCursorStore, usePlayingVideoStore } from "@/store/zustand";
 
 const formatTime = (seconds) => {
@@ -45,16 +44,17 @@ const ProjectsDetail = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const project = projectsData.find((item) => item.id === String(slug));
   const router = useRouter();
-  const isTablet = useMedia("(max-width: 992px)");
   const videoRef = useRef(null);
   const [videoTime, setVideoTime] = useState("00:00:00");
   const [progressPercent, setProgressPercent] = useState(0);
   const { handleMouseEnter, handleMouseLeave, handleClick } = useCursorStore();
-  const { isPlaying, setIsPlaying } = usePlayingVideoStore();
+  const { setIsPlaying } = usePlayingVideoStore();
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    video.play();
+    setIsPlaying(true);
 
     const updateTime = () => {
       setVideoTime(formatTime(video.currentTime));
@@ -67,7 +67,7 @@ const ProjectsDetail = () => {
     };
   }, []);
 
-  const togglePlayPause = useCallback(() => {
+  const togglePlayPause = () => {
     const video = videoRef.current;
     if (!video) return;
 
@@ -78,7 +78,7 @@ const ProjectsDetail = () => {
       video.pause();
       setIsPlaying(false);
     }
-  }, [setIsPlaying]);
+  };
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -100,6 +100,11 @@ const ProjectsDetail = () => {
       setIsFullscreen(false);
     }
   };
+  useEffect(() => {
+    handleMouseEnter("playVideo");
+
+    return () => handleMouseLeave();
+  }, []);
 
   if (!project) {
     return <div>Nothing to show at the moment.</div>;
@@ -107,9 +112,12 @@ const ProjectsDetail = () => {
 
   return (
     <>
-      <div>
-        <header className="fixed top-0 right-0 w-full px-5 py-2 mix-blend-exclusion z-10 bg-black">
-          <ul className="relative grid grid-cols-5 max-lg:grid-cols-2">
+      <div className="">
+        <header
+          className="fixed top-0 right-0 w-full px-5 py-2 mix-blend-exclusion z-10 "
+          onMouseEnter={() => handleMouseEnter("default")}
+        >
+          <ul className="relative grid grid-cols-5 max-lg:grid-cols-2 ">
             <div className="flex items-center max-lg:gap-4">
               <a className="relative normal-txt max-lg:hidden">{videoTime}</a>
               <a className="normal-txt hidden max-lg:block">{project.index}</a>
@@ -121,7 +129,7 @@ const ProjectsDetail = () => {
             <a className="normal-txt max-lg:hidden">{project.camera}</a>
           </ul>
 
-          <div className="fixed top-0 right-0 px-5 py-2 flex justify-end">
+          <div className="fixed top-0 right-0 px-5 py-2 flex justify-end cursor-default">
             <button
               className="normal-txt uppercase cursor-pointer select-none"
               onClick={() => {
@@ -142,12 +150,9 @@ const ProjectsDetail = () => {
         </div>
 
         <section
-          className="fixed top-0 flex justify-center items-center w-full h-full cursor-none max-lg:cursor-default"
-          onMouseEnter={
-            !isTablet ? () => handleMouseEnter("playVideo") : undefined
-          }
-          onMouseLeave={!isTablet ? handleMouseLeave : undefined}
-          onClick={togglePlayPause}
+          className="fixed top-0 flex justify-center items-center w-full h-full cursor-none"
+          onMouseEnter={() => handleMouseEnter("playVideo")}
+          onMouseLeave={() => handleMouseLeave()}
         >
           <video
             ref={videoRef}
@@ -156,10 +161,14 @@ const ProjectsDetail = () => {
             loop
             muted={isMuted}
             className="w-full h-auto"
+            onClick={togglePlayPause}
           />
         </section>
 
-        <footer className="fixed bottom-0 right-0 w-full px-5 py-3 mix-blend-exclusion z-50 bg-black">
+        <footer
+          className="fixed bottom-0 right-0 w-full px-5 py-3 mix-blend-exclusion z-50"
+          onMouseEnter={() => handleMouseLeave()}
+        >
           <ul className="relative flex justify-between">
             <div className="flex items-center max-lg:gap-4">
               <button

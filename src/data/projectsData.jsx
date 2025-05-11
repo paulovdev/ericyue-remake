@@ -274,14 +274,15 @@ export const heroData = [
       "https://player.vimeo.com/progressive_redirect/playback/920928357/rendition/1080p/file.mp4?loc=external&log_user=0&signature=600ef0f39407738b10bfa95d7bc6cc8b30143a5af7136874569bcc7380f13f7d",
   },
   {
-    id: "the-giant",
-    index: "003",
-    title: "The Giant",
-    author: "David Raboy",
+    id: "a-thousand-and-one",
+    index: "002",
+    title: "A Thousand and One",
+    author: "A.V. Rockwell",
     category: "Film",
-    camera: "35mm",
-    img: "/photos/the-giant/img-1.jpg",
-    video: undefined,
+    camera: "Digital",
+    img: "/photos/a-thousand-and-one/img-1.jpg",
+    video:
+      "https://player.vimeo.com/progressive_redirect/playback/938378896/rendition/1080p/file.mp4?loc=external&log_user=0&signature=b95daca51c33d09332820deeeaf497b2112e3a81c388619cd1427b2535be95f0",
   },
   {
     id: "skims",
@@ -292,7 +293,7 @@ export const heroData = [
     camera: "35mm",
     img: "/photos/skims/img-1.jpg",
     video:
-      "https://player.vimeo.com/progressive_redirect/playback/922635775/rendition/1080p/file.mp4?loc=external&log_user=0&signature=2445148a27bad7bd4dc0754b515ebf5ed135f6c90a4b312b5ec50b50e0e3d7f9",
+      "https://download-video-ak.vimeocdn.com/v3-1/playback/123a81a3-3e43-4488-8cb1-182e7ca64fc6/683f8b47-006b398c?__token__=st=1746975116~exp=1746989516~acl=%2Fv3-1%2Fplayback%2F123a81a3-3e43-4488-8cb1-182e7ca64fc6%2F683f8b47-006b398c%2A~hmac=6ec9009d64d0c6425b8c6880409ab9d2691e5f1e23be245fe45a328b5db21762&r=dXMtZWFzdDE%3D",
   },
   {
     id: "asap-rocky-forever",
@@ -303,7 +304,7 @@ export const heroData = [
     camera: "16mm",
     img: "/photos/asap-rocky-forever/img-1.jpg",
     video:
-      "https://player.vimeo.com/progressive_redirect/playback/263756167/rendition/1080p/file.mp4?loc=external&log_user=0&signature=c27471bb1f1881b89355eb0fdf158a12b90d9e90e2b1ef204228f9adbc68f94f",
+      "https://vod-progressive-ak.vimeocdn.com/exp=1746989540~acl=%2Fvimeo-transcode-storage-prod-us-central1-h264-1080p%2F01%2F2751%2F10%2F263756167%2F979688037.mp4~hmac=a04af86e62c63ebab630970689db0d072e55d7cee79fd1dcac9401b3544d19de/vimeo-transcode-storage-prod-us-central1-h264-1080p/01/2751/10/263756167/979688037.mp4?filename=file.mp4",
   },
   {
     id: "diesel-ss25",

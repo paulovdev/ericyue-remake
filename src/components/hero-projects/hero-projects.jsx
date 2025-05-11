@@ -139,7 +139,7 @@ const HeroProject = ({ project, index }) => {
           variants={zoomAnimation}
           initial="initial"
           animate={onClicked && "animate"}
-          className="size-auto px-4 cursor-none max-lg:px-3"
+          className="size-auto px-4  max-lg:px-3 cursor-none"
           onMouseEnter={
             !isTablet ? () => handleMouseEnter("projectHero") : undefined
           }

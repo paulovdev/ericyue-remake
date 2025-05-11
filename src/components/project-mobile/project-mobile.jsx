@@ -104,7 +104,7 @@ const ProjectMobile = ({ project, index }) => {
           variants={zoomAnimation}
           initial="initial"
           animate={onClicked && "animate"}
-          className="size-full cursor-none"
+          className="size-full "
           onMouseEnter={
             !isTablet ? () => handleMouseEnter("projectHero") : undefined
           }
